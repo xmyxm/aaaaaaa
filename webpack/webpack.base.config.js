@@ -8,7 +8,23 @@ const WebpackSpritesmithPlugin = require('webpack-spritesmith');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');//webpack插件，用于清除目录文件
 const packageFilePath = path.join(__dirname, '../dist');
 
-const templateFunction = function (data) {
+const templateHeaderFunction = function (data) {
+    // 这里比较特殊，合并的图都是实际显示的8倍，所以需要处理调整 background-size，建议使用2倍图，图片太大资源浪费
+    let multiple = 8;
+
+    let shared = '.icon-header {\n  background-image: url(I);\n  background-size: Wpx Hpx;\n}'.replace('I', data.sprites[0].image).replace('W', data.spritesheet.width / multiple)
+        .replace('H', data.spritesheet.height / multiple)
+
+    let perSprite = data.sprites.map(function (sprite) {
+        return '.icon-N {\n  background-position: Xpx Ypx;\n}'
+            .replace('N', sprite.name)
+            .replace('X', sprite.offset_x / multiple)
+            .replace('Y', sprite.offset_y / multiple);
+    }).join('\n');
+    return shared + '\n' + perSprite;
+}
+
+const templateIconsFunction = function (data) {
     // 这里比较特殊，合并的图都是实际显示的5倍，所以需要处理调整 background-size，建议使用2倍图，图片太大资源浪费
     let multiple = 5;
 
@@ -127,38 +143,72 @@ module.exports = {
                 collapseWhitespace: false//移除空格
             }
         }),
-        // 雪碧图插件
+        // 雪碧图插件(合并公共icon)
         new WebpackSpritesmithPlugin({
             // 目标小图标
             src: {
                 // 合成雪碧图的icon图路径
-                cwd: path.join(__dirname, '../src/image/icon'),
+                cwd: path.join(__dirname, '../src/image/icons'),
                 // 匹配小图标文件后缀名，可以是一个正则
                 glob: '*.png'
             },
             target: {
                 // 生成雪碧图(大图)文件存放路径
-                image: path.resolve(__dirname, '../src/sprites/sprites.png'),
+                image: path.resolve(__dirname, '../src/sprites/icons.png'),
                 // 生成对应的样式文件存放路径
                 css: [
                     // 可以根据不同的 format 输出多组 css
                     [
-                        path.resolve(__dirname, '../src/sprites/sprites.css'),
-                        { format: "function_based_template" }
+                        path.resolve(__dirname, '../src/sprites/icons.css'),
+                        { format: "templateIconsFunction" }
                     ]
                 ]
             },
             // 导出的sprites.css样式文件中, 依赖的sprite.png的相对路径
             apiOptions: {
-                cssImageRef: './sprites.png'
+                cssImageRef: './icons.png'
             },
             // 雪碧图生成算法
             spritesmithOptions: {
                 algorithm: 'binary-tree', // 默认使用二叉树最优排列算法 // top-down
                 padding: 4// 每个小图标之间的间隙
             }
-            ,customTemplates: {
-                'function_based_template': templateFunction
+            , customTemplates: {
+                'templateIconsFunction': templateIconsFunction
+            }
+        }),
+        // 雪碧图插件(合并header)
+        new WebpackSpritesmithPlugin({
+            // 目标小图标
+            src: {
+                // 合成雪碧图的icon图路径
+                cwd: path.join(__dirname, '../src/image/header'),
+                // 匹配小图标文件后缀名，可以是一个正则
+                glob: '*.png'
+            },
+            target: {
+                // 生成雪碧图(大图)文件存放路径
+                image: path.resolve(__dirname, '../src/sprites/header.png'),
+                // 生成对应的样式文件存放路径
+                css: [
+                    // 可以根据不同的 format 输出多组 css
+                    [
+                        path.resolve(__dirname, '../src/sprites/header.css'),
+                        { format: "templateHeaderFunction" }
+                    ]
+                ]
+            },
+            // 导出的sprites.css样式文件中, 依赖的sprite.png的相对路径
+            apiOptions: {
+                cssImageRef: './header.png'
+            },
+            // 雪碧图生成算法
+            spritesmithOptions: {
+                algorithm: 'binary-tree', // 默认使用二叉树最优排列算法 // top-down
+                padding: 4// 每个小图标之间的间隙
+            }
+            , customTemplates: {
+                'templateHeaderFunction': templateHeaderFunction
             }
         })
     ],

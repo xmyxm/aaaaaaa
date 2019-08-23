@@ -26,6 +26,7 @@ export default class Index extends Component {
                         <p>2. 合并的雪碧图和其它图片会在页面webpack.pro.config配置统一进行几乎无损的压缩</p>
                         <p>3. 合并雪碧图的icon使用2倍图在retina屏有更好的展示</p>
                         <p>4. 雪碧图并非是项目最终构建出文件，不建议放在dist目录，放在src目录更好</p>
+                        <p>5. 如果全量打一个雪碧图较大时可以区分合并两个雪碧图</p>
                     </div>
                 </div>
             </React.Fragment>

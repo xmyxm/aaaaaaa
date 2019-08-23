@@ -16,9 +16,9 @@ export default class Header extends Component {
         return (
             <React.Fragment>
                 <header className="header">
-                    <div onClick ={this.back} className="back"></div>
+                    <div onClick ={this.back} className="icon-back icon-header"></div>
                     <div className="title">{ title }</div>
-                    <div onClick={this.next} className={ nextPage ? "next-page" : "next"}></div>
+                    <div onClick={this.next} className={ nextPage ? "icon-go icon-header" : "go"}></div>
                 </header>
                 {
                     !hideHeight && <div className="headerbox"></div>

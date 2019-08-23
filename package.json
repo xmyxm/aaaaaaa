@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/xmyxm/webpack-imgmin#readme",
   "devDependencies": {
-    "open": "^6.4.0",
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -42,6 +41,7 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "open": "^6.4.0",
     "postcss-loader": "^3.0.0",
     "react-dom": "^16.8.6",
     "style-loader": "^0.23.1",

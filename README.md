@@ -6,10 +6,16 @@
 ### 二、如何体验
 1、安装与启动
 ```bash
-    npm install
-    npm run start
+    yarn install
+    yarn start
 ```
-2、页面展示
+
+2、构建
+```bash
+    yarn build
+```
+
+3、页面展示
 
 <img src="https://p0.meituan.net/scarlett/edd833b9bed1f94acb71adc626cd295537399.png">
 
@@ -81,3 +87,5 @@ handlebarsHelpers
 
 官方配置说明相对清晰友好，<a href="https://github.com/tcoopman/image-webpack-loader">点击文档</a>
 
+### 五、说明
+因为使用了图片压缩工具 image-webpack-loader , 所以会下载一些压缩图片的代码包，速度较慢，请耐心等待，若下载中断再次下载也是无效的，会导致构建失败

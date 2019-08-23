@@ -1,0 +1,10 @@
+.icon-header {
+  background-image: url(./header.png);
+  background-size: 50.5px 25px;
+}
+.icon-back {
+  background-position: 0px 0px;
+}
+.icon-go {
+  background-position: -25.5px 0px;
+}
