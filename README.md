@@ -2,10 +2,15 @@
     实现项目构建时图片的最优性能方案：自动合并雪碧图并压缩所有图片
 
 ### 二、如何体验
+1、安装与启动
 ```bash
     npm install
     npm run start
 ```
+2、页面展示
+
+<img src="https://p0.meituan.net/scarlett/edd833b9bed1f94acb71adc626cd295537399.png">
+
 
 ### 二、依赖能力
     webpack-spritesmith 把指定目录下的图片合并成雪碧图且生成一套雪碧图的css，项目中需要使用雪碧图的地方直接引入这个css即可
