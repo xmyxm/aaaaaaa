@@ -76,6 +76,6 @@ handlebarsHelpers
 5. 观其代码发现图片资源都是本地压缩，安装各类图片的压缩工具
 ```
 2. 配置
-```
-官方配置说明相对清晰友好，<a href="https://github.com/tcoopman/image-webpack-loader">文档</a>
-```
+
+官方配置说明相对清晰友好，<a href="https://github.com/tcoopman/image-webpack-loader">点击文档</a>
+
