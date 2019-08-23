@@ -4,20 +4,15 @@ import Header from "../component/header/index"
 import "../style/index.less";
 
 export default class Index extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            iconList: ["icon-bb", "icon-bgg", "icon-bg", "icon-bd", "icon-cm", "icon-dg", "icon-dhs", "icon-kxg", "icon-mkl"]
-        }
-    }
 
     render() {
-        const { iconList } = this.state
+        const iconList  = ["icon-bb", "icon-bgg", "icon-bg", "icon-bd", "icon-cm", "icon-dg", "icon-dhs", "icon-kxg", "icon-mkl", "icon-rg", "icon-ms", "icon-nyg"]
         return (
             <React.Fragment>
-                <Header title="雪碧图方案"></Header>
+                <Header title="雪碧图"></Header>
                 <div className="index-page">
-                    <div className="title">基于webpack-spritesmith的技术方案</div>
+                    <div className="icon-max"></div>
+                    <div className="describe">基于webpack-spritesmith的雪碧图方案</div>
                     <div className="bkg-box">
                         {
                             iconList.map(classText => {
@@ -27,7 +22,10 @@ export default class Index extends Component {
                     </div>
                     <div className="info">
                         使用方案介绍：
-                        1. 安装 webpack-spritesmith
+                        <p>1. 雪碧图合成支持热更新，文件夹新增图片会立刻合成并生成css</p>
+                        <p>2. 合并的雪碧图和其它图片会在页面webpack.pro.config配置统一进行几乎无损的压缩</p>
+                        <p>3. 合并雪碧图的icon使用2倍图在retina屏有更好的展示</p>
+                        <p>4. 雪碧图并非是项目最终构建出文件，不建议放在dist目录，放在src目录更好</p>
                     </div>
                 </div>
             </React.Fragment>
